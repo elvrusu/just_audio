@@ -1381,7 +1381,13 @@
         _player = nil;
     }
     // Untested:
-    [_eventChannel dispose];
+    @try {
+        [_eventChannel dispose];
+    } @catch (NSException *exception) {
+        NSLog(@"An exception occurred: %@, %@", exception.name, exception.reason);
+    } @finally {
+        NSLog(@"Dispose operation attempted.");
+    }
     [_dataEventChannel dispose];
     [_methodChannel setMethodCallHandler:nil];
 }

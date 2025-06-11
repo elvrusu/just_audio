@@ -803,6 +803,12 @@ class _PlayerAudioHandler extends BaseAudioHandler
       errorMessage: _justAudioEvent.errorMessage,
     ));
   }
+
+  @override
+  Future<void> onTaskRemoved() {
+    stop();
+    return super.onTaskRemoved();
+  }
 }
 
 class _Seeker {

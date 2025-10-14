@@ -319,6 +319,12 @@ public class AudioPlayer implements MethodCallHandler, Player.Listener, Metadata
     @Override
     public void onPlaybackStateChanged(int playbackState) {
         switch (playbackState) {
+
+        case Player.STATE_IDLE:
+            if (seekResult != null) {
+                completeSeek();
+            }
+            break;
         case Player.STATE_READY:
             if (player.getPlayWhenReady())
                 updatePosition();
